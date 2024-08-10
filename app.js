@@ -48,10 +48,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Routes
+app.use('/users', userRoutes);
 app.use('/blogs', upload.single('image'), blogRoutes);
 app.use('/blogs/comments', commentRoutes);
-app.use('/likes', likeRoutes);
-app.use('/users', userRoutes);
+app.use('/blogs/likes', likeRoutes);
+
 
 // Serve static files from the "uploads" directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
