@@ -32,20 +32,15 @@ exports.validateLogin = (req, res, next) => {
 
 // Validation for blog creation and updates
 exports.validateBlog = (req, res, next) => {
-  // Convert `author` to string if it's an ObjectId
-  const authorId = req.user._id instanceof mongoose.Types.ObjectId
-    ? req.user._id.toString()
-    : req.user._id;
-
-  // Constructing the data object
+  // Extracting the data from `req.body` and `req.file`
   const data = {
     title: req.body.title,
     content: req.body.content,
-    author: authorId, // Use the logged-in user's ID as a string
+    author: req.user._id.toString(), // Use the logged-in user's ID as a string
     image: req.file ? {
-      url: req.file.path, // Temporarily using the file path; will be replaced by Cloudinary URL after upload
-      public_id: req.file.filename // Temporarily using the filename; will be replaced by Cloudinary public_id
-    } : req.body.image // Use image data from body if not uploaded
+      url: '', // The actual URL will be set after the Cloudinary upload
+      public_id: '' // Will be set after the Cloudinary upload
+    } : null
   };
 
   // Joi schema for blog validation
@@ -59,7 +54,7 @@ exports.validateBlog = (req, res, next) => {
       return value;
     }).required(), // Validate that author is a valid ObjectId
     image: Joi.object({
-      url: Joi.string().uri().optional(),
+      url: Joi.string().uri().optional(), // The URL will be validated after uploading to Cloudinary
       public_id: Joi.string().optional()
     }).optional()
   });

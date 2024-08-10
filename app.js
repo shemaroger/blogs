@@ -50,8 +50,8 @@ const upload = multer({ storage });
 // Routes
 app.use('/users', userRoutes);
 app.use('/blogs', upload.single('image'), blogRoutes);
-app.use('/blogs/comments', commentRoutes);
-app.use('/blogs/likes', likeRoutes);
+app.use('/blogs', commentRoutes);
+app.use('/blogs', likeRoutes);
 
 
 // Serve static files from the "uploads" directory

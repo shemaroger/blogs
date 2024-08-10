@@ -3,6 +3,7 @@ const router = express.Router();
 const likeController = require('../controllers/likeController');
 const { validateAuth } = require('../middleware/authMiddleware');
 
-router.post('/:blogId', validateAuth, likeController.toggleLike);
+// Like Routes
+router.post('/:blogId/likes', validateAuth, likeController.toggleLike);
 
 module.exports = router;
