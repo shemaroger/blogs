@@ -5,7 +5,23 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --coverage"
+   
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  },
+  
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "clover"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -24,4 +40,6 @@
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1"
   }
+  
+ 
 }
