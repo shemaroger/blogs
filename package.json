@@ -6,22 +6,6 @@
   "scripts": {
     "start": "node app.js",
     "test": "jest --coverage"
-   
-  },
-  "devDependencies": {
-    "jest": "^29.7.0",
-    "supertest": "^7.0.0"
-  },
-  
-  "jest": {
-    "testEnvironment": "node",
-    "collectCoverage": true,
-    "coverageReporters": [
-      "json",
-      "lcov",
-      "text",
-      "clover"
-    ]
   },
   "keywords": [],
   "author": "",
@@ -39,7 +23,20 @@
     "multer-storage-cloudinary": "^4.0.0",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1"
-  }
-  
- 
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^10.0.0",
+    "supertest": "^7.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "testTimeout": 30000,
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "clover"]
+}
 }
