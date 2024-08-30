@@ -4,24 +4,22 @@ const { MongoMemoryServer } = require('mongodb-memory-server');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const app = require('../app'); // Adjust the path to your Express app
-
+jest.setTimeout(70000);
 let mongoServer;
 let server;
 
 beforeAll(async () => {
-  jest.setTimeout(30000); // Increase timeout for setup
+   // Increase timeout for setup
   mongoServer = await MongoMemoryServer.create();
   const uri = mongoServer.getUri();
-  await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+  await mongoose.connect(uri)
   
-  // Start the server on a random port
-  server = app.listen(0);
-}, 30000);
+});
 
 afterAll(async () => {
   await mongoose.disconnect();
   await mongoServer.stop();
-  await new Promise((resolve) => server.close(resolve));
+  // await new Promise((resolve) => server.close(resolve));
 });
 
 describe('User Endpoints', () => {

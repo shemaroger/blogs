@@ -26,7 +26,6 @@
   },
   "devDependencies": {
     "jest": "^29.7.0",
-    "mongodb-memory-server": "^10.0.0",
     "supertest": "^7.0.0"
   },
   "jest": {
@@ -37,6 +36,7 @@
       "json",
       "lcov",
       "text",
-      "clover"]
-}
+      "clover"
+    ]
+  }
 }
